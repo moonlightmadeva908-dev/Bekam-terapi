@@ -1,0 +1,6 @@
+{
+  "name": "Bekam Jr.",
+  "description": "Aplikasi PWA manajemen pasien dan jadwal terapi bekam (hijama) profesional multi-tenant untuk praktisi bekam.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

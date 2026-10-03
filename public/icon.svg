@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#064e3b" />
+      <stop offset="50%" stop-color="#0f766e" />
+      <stop offset="100%" stop-color="#065f46" />
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="50%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+    <linearGradient id="inner" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.05" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background with rounded squircle -->
+  <rect width="512" height="512" rx="112" fill="url(#bg)" />
+  
+  <!-- Subtle decorative ring -->
+  <circle cx="256" cy="256" r="210" fill="none" stroke="url(#gold)" stroke-width="4" stroke-opacity="0.3" stroke-dasharray="12 8" />
+
+  <!-- Cupping Cup / Hijama Bell Glass Motif -->
+  <!-- Top Valve/Handle -->
+  <rect x="238" y="100" width="36" height="30" rx="8" fill="url(#gold)" />
+  <rect x="246" y="80" width="20" height="24" rx="4" fill="#fbbf24" />
+  
+  <!-- Glass Cup Body -->
+  <path d="M 170 330 C 160 220, 200 130, 256 130 C 312 130, 352 220, 342 330 Z" fill="url(#inner)" stroke="url(#gold)" stroke-width="12" stroke-linejoin="round" />
+
+  <!-- Bottom Rim of Cupping Jar -->
+  <ellipse cx="256" cy="336" rx="90" ry="24" fill="#042f2e" stroke="url(#gold)" stroke-width="12" />
+
+  <!-- Healing Herb / Olive Leaf & Droplet in Center -->
+  <!-- Pure Health Droplet -->
+  <path d="M 256 195 C 240 230, 224 250, 224 270 A 32 32 0 0 0 288 270 C 288 250, 272 230, 256 195 Z" fill="url(#gold)" />
+
+  <!-- Crescent / Medical Emblem subtle -->
+  <path d="M 190 390 C 220 410, 292 410, 322 390" fill="none" stroke="url(#gold)" stroke-width="8" stroke-linecap="round" />
+
+  <!-- Subtitle Text -->
+  <text x="256" y="445" font-family="system-ui, -apple-system, sans-serif" font-size="34" font-weight="800" fill="#fef08a" text-anchor="middle" letter-spacing="4">BEKAM JR.</text>
+</svg>

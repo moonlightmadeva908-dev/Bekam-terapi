@@ -1,0 +1,46 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default Deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidUserProfile(data, userId) {
+      return data.userId == userId &&
+        data.name is string && data.name.size() > 0 && data.name.size() <= 100;
+    }
+
+    function isValidPatient(data, userId) {
+      return data.userId == userId &&
+        data.name is string && data.name.size() > 0 && data.name.size() <= 100 &&
+        data.phone is string && data.phone.size() > 0 && data.phone.size() <= 30 &&
+        (data.status == 'Sudah Bekam' || data.status == 'Akan Bekam') &&
+        (!('cuppingCount' in data) || data.cuppingCount is number);
+    }
+
+    // Profil Praktisi
+    match /users/{userId} {
+      allow read: if isOwner(userId);
+      allow create: if isOwner(userId) && isValidUserProfile(request.resource.data, userId);
+      allow update: if isOwner(userId) && isValidUserProfile(request.resource.data, userId);
+      allow delete: if isOwner(userId);
+
+      // Data Rekam Medis & Jadwal Pasien (Terisolasi per user)
+      match /patients/{patientId} {
+        allow read: if isOwner(userId);
+        allow create: if isOwner(userId) && isValidPatient(request.resource.data, userId);
+        allow update: if isOwner(userId) && isValidPatient(request.resource.data, userId);
+        allow delete: if isOwner(userId);
+      }
+    }
+  }
+}

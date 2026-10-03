@@ -1,0 +1,52 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Profil terapis atau praktisi bekam",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "ID Pengguna Firebase Auth" },
+        "name": { "type": "string", "description": "Nama lengkap pembekam" },
+        "phone": { "type": "string", "description": "Nomor WhatsApp pembekam" },
+        "address": { "type": "string", "description": "Alamat klinik atau praktik pembekam" },
+        "avatarUrl": { "type": "string", "description": "Foto profil pembekam" },
+        "bannerUrl": { "type": "string", "description": "Foto banner profil pembekam" },
+        "bannerPosition": { "type": "string", "description": "Posisi tampilan banner (top, center, bottom)" },
+        "createdAt": { "type": "string", "description": "Timestamp pembuatan profil" },
+        "updatedAt": { "type": "string", "description": "Timestamp pembaruan profil" }
+      },
+      "required": ["userId", "name"]
+    },
+    "Patient": {
+      "title": "Patient",
+      "description": "Data rekam medis pasien bekam dan jadwal terapi",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "ID pembekam pemilik data pasien" },
+        "name": { "type": "string", "description": "Nama pasien" },
+        "address": { "type": "string", "description": "Alamat tempat tinggal pasien" },
+        "phone": { "type": "string", "description": "Nomor WhatsApp pasien" },
+        "lastCuppingDate": { "type": "string", "description": "Tanggal riwayat berbekam terakhir" },
+        "nextCuppingDate": { "type": "string", "description": "Tanggal rencana bekam berikutnya" },
+        "nextCuppingTime": { "type": "string", "description": "Jam kedatangan rencana bekam" },
+        "status": { "type": "string", "enum": ["Sudah Bekam", "Akan Bekam"], "description": "Status terapi bekam" },
+        "complaints": { "type": "string", "description": "Keluhan utama pasien" },
+        "cuppingPoints": { "type": "string", "description": "Titik-titik bekam yang ditindak" },
+        "cuppingCount": { "type": "number", "description": "Jumlah total sesi terapi bekam yang telah dijalani pasien" },
+        "createdAt": { "type": "string", "description": "Timestamp pencatatan" },
+        "updatedAt": { "type": "string", "description": "Timestamp pembaruan" }
+      },
+      "required": ["userId", "name", "phone", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Profil akun praktisi bekam"
+    },
+    "/users/{userId}/patients/{patientId}": {
+      "schema": "Patient",
+      "description": "Koleksi data pasien terapis yang terisolasi penuh berdasarkan userId"
+    }
+  }
+}
